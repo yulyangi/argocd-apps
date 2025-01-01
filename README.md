@@ -1,7 +1,6 @@
 # argocd-apps
-Argo CD Apps Repo
 
-NOTES:
+### NOTES:
 In order to access the server UI you have the following options:
 
 1. kubectl port-forward service/argo-cd-argocd-server -n default 8080:443
@@ -15,10 +14,12 @@ In order to access the server UI you have the following options:
 
 After reaching the UI the first time you can login with username: admin and the random password generated during the installation. You can find the password by running:
 
-kubectl -n default get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
+`kubectl -n default get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d`
 
-(You should delete the initial secret afterwards as suggested by the Getting Started Guide: https://argo-cd.readthedocs.io/en/stable/getting_started/#4-login-using-the-cli
+You should delete the initial secret afterwards as suggested by the Getting Started Guide: https://argo-cd.readthedocs.io/en/stable/getting_started/#4-login-using-the-cli
 
+### To deploy Argo CD itself:
+```
 helm repo add argo https://argoproj.github.io/argo-helm
 helm install argo-cd oci://ghcr.io/argoproj/argo-helm/argo-cd -f argo-cd-values.yaml
-pmSn8tAMXq5HatiO
+```
