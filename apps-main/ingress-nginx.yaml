@@ -1,4 +1,5 @@
 # https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/application.yaml
+# https://github.com/kubernetes/ingress-nginx/blob/main/charts/ingress-nginx/values.yaml
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -8,7 +9,7 @@ spec:
   project: dev
   source:
     chart: ingress-nginx
-    repoURL: https://kubernetes.github.io/ingress-nginx
+    repoURL: https://github.com/kubernetes/ingress-nginx.git
     targetRevision: 1.12.0
     helm:
       releaseName: ingress-nginx
