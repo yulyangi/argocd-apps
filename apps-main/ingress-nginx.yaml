@@ -1,0 +1,29 @@
+# https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/application.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ingress-nginx
+  namespace: argocd
+spec:
+  project: dev
+  source:
+    chart: ingress-nginx
+    repoURL: https://kubernetes.github.io/ingress-nginx
+    targetRevision: 1.12.0
+    helm:
+      releaseName: ingress-nginx
+      # parameters:
+      # - name: "nginx-ingress.controller.service.annotations.external-dns\\.alpha\\.kubernetes\\.io/hostname"
+      #   value: mydomain.example.com
+
+      # fileParameters:
+      # - name: config
+      #   path: files/config.json
+
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: ingress-nginx
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    - PruneLast=true
