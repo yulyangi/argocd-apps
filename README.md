@@ -21,5 +21,5 @@ You should delete the initial secret afterwards as suggested by the Getting Star
 ### To deploy Argo CD itself:
 ```
 helm repo add argo https://argoproj.github.io/argo-helm
-helm install argo-cd oci://ghcr.io/argoproj/argo-helm/argo-cd -f argo-cd-values.yaml
+helm install argo-cd argo/argo-cd -f argo-cd-values.yaml
 ```
