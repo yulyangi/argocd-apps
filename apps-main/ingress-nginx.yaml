@@ -1,5 +1,6 @@
 # https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/application.yaml
 # https://github.com/kubernetes/ingress-nginx/blob/main/charts/ingress-nginx/values.yaml
+
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
