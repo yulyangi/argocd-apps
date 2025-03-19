@@ -1,0 +1,39 @@
+# https://github.com/apache/incubator-devlake-helm-chart
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: devlake
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  labels:
+    name: devlake
+spec:
+  project: dev
+  source:
+    chart: devlake
+    repoURL: https://apache.github.io/incubator-devlake-helm-chart
+    targetRevision: 1.0.1
+    helm:
+      ingress:
+        enabled: true
+        hostname: devlake.yulyan.xyz
+      # releaseName: devlake
+      grafana:
+        namespaceOverride: devlake
+        adminPassword: admin
+      lake:
+        encryptionSecret:
+          secret: ELLGNOLTERPKJHUYXNZDSFKBXEFELIMPYCBXSVEOUDQTLIKVUBICSDKMELDYZMORPTSCQGZTXKCAPDMBHUKAUMODVDTEHCBALWRQFCQLJBJXCLGUWCGMZAHVCTVZBYEH
+          autoCreateSecret: true
+      ui:
+        basicAuth:
+          enabled: false
+  destination:
+    namespace: devlake
+    name: in-cluster
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    - PruneLast=true
