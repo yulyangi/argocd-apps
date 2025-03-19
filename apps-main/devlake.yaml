@@ -25,7 +25,8 @@ spec:
         adminPassword: admin
       lake:
         encryptionSecret:
-          secretName: devlake-encription-secret
+          secret: OXSZNSVESKZSUGGPETSFRSNVETXHNMFEWZEECRSGKAVZOCECCRYUOTOOLUNEFLZZSYBLLQICUZPTFBYFZJGZUGURASZXMIAQNQDMHWEHSYFIKUFMKASDPTMNVNZQEWCG
+          secretName: devlake-encryption-secret
           autoCreateSecret: false
       ui:
         basicAuth:
