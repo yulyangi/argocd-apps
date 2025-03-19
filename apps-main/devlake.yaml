@@ -16,11 +16,12 @@ spec:
     repoURL: https://apache.github.io/incubator-devlake-helm-chart
     targetRevision: 1.0.1
     helm:
+      # releaseName: devlake
       values: |
         ingress:
           enabled: true
           hostname: devlake.yulyan.xyz
-        # releaseName: devlake
+
         grafana:
           namespaceOverride: devlake
           adminPassword: admin
