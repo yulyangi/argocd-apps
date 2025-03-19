@@ -16,21 +16,22 @@ spec:
     repoURL: https://apache.github.io/incubator-devlake-helm-chart
     targetRevision: 1.0.1
     helm:
-      ingress:
-        enabled: true
-        hostname: devlake.yulyan.xyz
-      # releaseName: devlake
-      grafana:
-        namespaceOverride: devlake
-        adminPassword: admin
-      lake:
-        encryptionSecret:
-          secret: OXSZNSVESKZSUGGPETSFRSNVETXHNMFEWZEECRSGKAVZOCECCRYUOTOOLUNEFLZZSYBLLQICUZPTFBYFZJGZUGURASZXMIAQNQDMHWEHSYFIKUFMKASDPTMNVNZQEWCG
-          secretName: devlake-encryption-secret
-          autoCreateSecret: false
-      ui:
-        basicAuth:
-          enabled: false
+      values: |
+        ingress:
+          enabled: true
+          hostname: devlake.yulyan.xyz
+        # releaseName: devlake
+        grafana:
+          namespaceOverride: devlake
+          adminPassword: admin
+        lake:
+          encryptionSecret:
+            secret: OXSZNSVESKZSUGGPETSFRSNVETXHNMFEWZEECRSGKAVZOCECCRYUOTOOLUNEFLZZSYBLLQICUZPTFBYFZJGZUGURASZXMIAQNQDMHWEHSYFIKUFMKASDPTMNVNZQEWCG
+            secretName: devlake-encryption-secret
+            autoCreateSecret: false
+        ui:
+          basicAuth:
+            enabled: false
   destination:
     namespace: devlake
     name: in-cluster
