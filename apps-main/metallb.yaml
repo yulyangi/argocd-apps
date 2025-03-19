@@ -1,30 +1,30 @@
-# https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/application.yaml
-# https://github.com/metallb/metallb/blob/main/charts/metallb/values.yaml
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: metallb
-  namespace: argocd
-spec:
-  project: dev
-  source:
-    chart: metallb
-    repoURL: https://metallb.github.io/metallb
-    targetRevision: '0.14.9'
-    helm:
-      releaseName: metallb
-      # parameters:
-      # - name: "nginx-ingress.controller.service.annotations.external-dns\\.alpha\\.kubernetes\\.io/hostname"
-      #   value: mydomain.example.com
+# # https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/application.yaml
+# # https://github.com/metallb/metallb/blob/main/charts/metallb/values.yaml
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: metallb
+#   namespace: argocd
+# spec:
+#   project: dev
+#   source:
+#     chart: metallb
+#     repoURL: https://metallb.github.io/metallb
+#     targetRevision: '0.14.9'
+#     helm:
+#       releaseName: metallb
+#       # parameters:
+#       # - name: "nginx-ingress.controller.service.annotations.external-dns\\.alpha\\.kubernetes\\.io/hostname"
+#       #   value: mydomain.example.com
 
-      # fileParameters:
-      # - name: config
-      #   path: files/config.json
+#       # fileParameters:
+#       # - name: config
+#       #   path: files/config.json
 
-  destination:
-    server: "https://kubernetes.default.svc"
-    namespace: metallb
-  syncPolicy:
-    syncOptions:
-    - CreateNamespace=true
-    - PruneLast=true
+#   destination:
+#     server: "https://kubernetes.default.svc"
+#     namespace: metallb
+#   syncPolicy:
+#     syncOptions:
+#     - CreateNamespace=true
+#     - PruneLast=true
