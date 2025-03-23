@@ -1,0 +1,27 @@
+# https://github.com/apache/incubator-devlake-helm-chart
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: elasticsearch
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  labels:
+    name: elasticsearch
+spec:
+  project: dev
+  source:
+    chart: elasticsearch
+    repoURL: https://helm.elastic.co
+    targetRevision: 8.5.1
+    # helm:
+      # releaseName: devlake
+      # values: 
+  destination:
+    namespace: elasticsearch
+    name: in-cluster
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    - PruneLast=true
