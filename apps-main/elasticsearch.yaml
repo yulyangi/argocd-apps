@@ -12,12 +12,45 @@ metadata:
 spec:
   project: dev
   source:
-    chart: elasticsearch
-    repoURL: https://helm.elastic.co
-    targetRevision: 8.5.1
-    # helm:
+    repoURL: https://github.com/yulyangi/argocd-apps.git # Can point to either a Helm chart repo or a git repo.
+    targetRevision: HEAD  # For Helm, this refers to the chart version.
+    path: charts/elasticsearch  # This has no meaning for Helm charts pulled directly from a Helm repo instead of git.
+    # chart: elasticsearch
+    # repoURL: https://helm.elastic.co
+    # targetRevision: 8.5.1
+    helm:
       # releaseName: devlake
-      # values: 
+      values: |
+        clusterName: "elasticsearch"
+        replicas: 1
+        minimumMasterNodes: 1
+        
+        extraEnvs:
+          - name: ELASTIC_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: elastic-config-credentials
+                key: password
+        
+        # This is just a dummy file to make sure that
+        # the keystore can be mounted at the same time
+        # as a custom elasticsearch.yml
+        esConfig:
+          elasticsearch.yml: |
+            xpack.security.enabled: true
+            path.data: /usr/share/elasticsearch/data
+        
+        keystore:
+          - secretName: elastic-config-secret
+          - secretName: elastic-config-slack
+          - secretName: elastic-config-custom-path
+            items:
+              - key: slack_url
+                path: xpack.notification.slack.account.otheraccount.secure_url
+        
+        secret:
+          enabled: false
+
   destination:
     namespace: elasticsearch
     name: in-cluster
