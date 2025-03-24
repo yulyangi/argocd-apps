@@ -40,14 +40,6 @@ spec:
             xpack.security.enabled: true
             path.data: /usr/share/elasticsearch/data
         
-        keystore:
-          - secretName: elastic-config-secret
-          - secretName: elastic-config-slack
-          - secretName: elastic-config-custom-path
-            items:
-              - key: slack_url
-                path: xpack.notification.slack.account.otheraccount.secure_url
-        
         secret:
           enabled: false
 
