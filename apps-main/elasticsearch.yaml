@@ -51,6 +51,12 @@ spec:
         secret:
           enabled: false
 
+        volumeClaimTemplate:
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 10Gi
+
   destination:
     namespace: elasticsearch
     name: in-cluster
